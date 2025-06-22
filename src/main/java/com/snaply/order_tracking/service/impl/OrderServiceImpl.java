@@ -1,7 +1,8 @@
-package com.snaply.order_tracking.service;
+package com.snaply.order_tracking.service.impl;
 
 import com.snaply.order_tracking.entity.Order;
 import com.snaply.order_tracking.repository.OrderRepository;
+import com.snaply.order_tracking.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
