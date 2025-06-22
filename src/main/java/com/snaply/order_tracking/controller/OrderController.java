@@ -1,5 +1,7 @@
 package com.snaply.order_tracking.controller;
 
+import com.snaply.order_tracking.dto.CreateOrderRequestDTO;
+import com.snaply.order_tracking.dto.UpdateOrderStatusRequestDTO;
 import com.snaply.order_tracking.entity.Order;
 import com.snaply.order_tracking.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,11 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> createOrder(@RequestBody CreateOrderRequestDTO requestDTO) {
+        Order order = new Order();
+        order.setCustomerName(requestDTO.getCustomerName());
+        order.setPhoneNumber(requestDTO.getPhoneNumber());
+        order.setProduct(requestDTO.getProduct());
         return ResponseEntity.ok(orderService.createOrder(order));
     }
 
@@ -24,7 +30,7 @@ public class OrderController {
     }
 
     @PutMapping("/{orderId}")
-    public ResponseEntity<Order> updateOrder(@PathVariable String orderId, @RequestBody Order updated) {
-        return ResponseEntity.ok(orderService.updateOrder(orderId, updated.getStatus()));
+    public ResponseEntity<Order> updateOrder(@PathVariable String orderId, @RequestBody UpdateOrderStatusRequestDTO requestDTO) {
+        return ResponseEntity.ok(orderService.updateOrder(orderId, requestDTO.getStatus()));
     }
 }
