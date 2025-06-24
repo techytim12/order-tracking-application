@@ -7,6 +7,8 @@ import com.snaply.order_tracking.service.WhatsAppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -43,5 +45,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getOrderById(String orderId) {
         return orderRepository.findById(Integer.valueOf(orderId)).get();
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 }
